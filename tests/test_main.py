@@ -1,6 +1,7 @@
 import subprocess
 import unittest.mock
 
+import pubmed_bibtex
 from pubmed_bibtex.__main__ import main
 
 from conftest import TEST_PMID, TEST_BIBTEX_ENTRY
@@ -30,3 +31,12 @@ def test_script():
                                stderr=subprocess.PIPE)
     assert not proc_info.stderr
     assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
+
+
+def test_version():
+    proc_info = subprocess.run(['pubmed-bibtex', '--version'],
+                               check=True,
+                               stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+    assert not proc_info.stderr
+    assert proc_info.stdout == pubmed_bibtex.__version__.encode() + b'\n'

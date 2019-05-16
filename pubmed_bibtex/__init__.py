@@ -25,6 +25,8 @@ import re
 
 import requests
 
+from pubmed_bibtex.version import __version__
+
 _TEXMED_URL_PATTERN = 'https://www.bioinformatics.org/texmed/cgi-bin' \
                       '/list.cgi?PMID={pmid}&linkOut'
 
