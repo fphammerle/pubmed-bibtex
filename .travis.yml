@@ -1,0 +1,24 @@
+language: python
+
+python:
+- 3.5
+- 3.6
+- 3.6-dev
+- 3.7
+- 3.7-dev
+
+# required for python >= 3.7
+dist: xenial
+
+install:
+- pip install pipenv
+- pipenv sync --dev
+- pipenv graph
+
+script:
+- pipenv run pylint pubmed_bibtex tests/*
+- pipenv run pytest --cov=pubmed_bibtex --cov-report=term-missing --cov-fail-under=100
+
+after_success:
+- pip install coveralls
+- coveralls
