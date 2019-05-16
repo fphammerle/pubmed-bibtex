@@ -1,6 +1,6 @@
 import unittest.mock
 
-from pubmed_bibtex import bibtex_entry_from_pmid, main
+from pubmed_bibtex import bibtex_entry_from_pmid, _main
 
 TEST_PMID = '31025164'
 TEST_BIBTEX_ENTRY = r"""@Article{pmid31025164,
@@ -20,7 +20,7 @@ def test_bibtex_entry_from_pmid():
 
 def test_main(capsys):
     with unittest.mock.patch('sys.argv', ['', TEST_PMID]):
-        main()
+        _main()
     out, err = capsys.readouterr()
     assert not err
     assert out == TEST_BIBTEX_ENTRY
