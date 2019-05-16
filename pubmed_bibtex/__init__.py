@@ -46,7 +46,7 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
     def error(self, message) -> None:
-        raise Exception(message)
+        raise Exception(message)  # pragma: no cover
 
 
 def bibtex_entry_from_pmid(pmid: str) -> str:
