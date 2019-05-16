@@ -6,6 +6,19 @@ a BibTeX interface for PubMed.
 
 TeXMed was written by Arne Muller
 https://www.bioinformatics.org/texmed/
+
+Command Line Example:
+$ pubmed-bibtex 31025164
+@Article{pmid31025164,
+   Author="...",
+   Title="...",
+   Journal="...",
+   ...
+}
+
+Python Example:
+>>> from pubmed_bibtex import bibtex_entry_from_pmid
+>>> print(bibtex_entry_from_pmid(123456789))
 """
 import html.parser
 import re

@@ -2,10 +2,9 @@ import os
 
 import setuptools
 
-import pubmed_bibtex
 
-
-LONG_DESCRIPTION = pubmed_bibtex.__doc__.lstrip()
+with open('README.md', 'r') as readme:
+    LONG_DESCRIPTION = readme.read()
 
 setuptools.setup(
     name='pubmed-bibtex',
@@ -14,7 +13,7 @@ setuptools.setup(
         # `version` triggers pylint C0103
         'write_to_template': "__version__ = '{version}'\n",
     },
-    description=LONG_DESCRIPTION.split(sep='\n', maxsplit=1)[0],
+    description='Generate BibTeX Entries for PubMed Publications',
     long_description=LONG_DESCRIPTION,
     author='Fabian Peter Hammerle',
     author_email='fabian@hammerle.me',
@@ -31,6 +30,7 @@ setuptools.setup(
         'reference',
         'research',
         'tex',
+        'texmed',
     ],
     classifiers=[
         'Development Status :: 4 - Beta',
