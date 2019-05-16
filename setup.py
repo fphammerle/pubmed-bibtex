@@ -3,7 +3,7 @@ import os
 import setuptools
 
 
-with open('README.md', 'r') as readme:
+with open('README.rst', 'r') as readme:
     LONG_DESCRIPTION = readme.read()
 
 setuptools.setup(
