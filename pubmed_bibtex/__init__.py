@@ -31,6 +31,9 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
         if 'Author' in data:
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
+    def error(self, message) -> None:
+        raise Exception(message)
+
 
 def bibtex_entry_from_pmid(pmid: str) -> str:
     assert pmid.isdigit(), pmid
