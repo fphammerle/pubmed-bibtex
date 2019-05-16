@@ -1,3 +1,4 @@
+import subprocess
 import unittest.mock
 
 from pubmed_bibtex import bibtex_entry_from_pmid, _main
@@ -24,3 +25,12 @@ def test_main(capsys):
     out, err = capsys.readouterr()
     assert not err
     assert out == TEST_BIBTEX_ENTRY
+
+
+def test_script():
+    proc_info = subprocess.run(['pubmed-bibtex', TEST_PMID],
+                               check=True,
+                               stdout=subprocess.PIPE,
+                               stderr=subprocess.PIPE)
+    assert not proc_info.stderr
+    assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
