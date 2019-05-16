@@ -1,3 +1,12 @@
+"""
+Generate BibTeX Entries for PubMed Publications
+
+This module utilizes the API of TeXMed,
+a BibTeX interface for PubMed.
+
+TeXMed was written by Arne Muller
+https://www.bioinformatics.org/texmed/
+"""
 import argparse
 import html.parser
 import re
@@ -32,12 +41,14 @@ def bibtex_entry_from_pmid(pmid: str) -> str:
     return parser.bibtex_entry
 
 
-def main():
-    argparser = argparse.ArgumentParser()
+def _main():
+    argparser = argparse.ArgumentParser(
+        description=__doc__.strip(),
+        formatter_class=argparse.RawDescriptionHelpFormatter)
     argparser.add_argument('pmid')
     args = argparser.parse_args()
     print(bibtex_entry_from_pmid(pmid=args.pmid),
           end='')
 
 if __name__ == '__main__':
-    main()
+    _main()
