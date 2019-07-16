@@ -5,7 +5,10 @@ TEST_BIBTEX_ENTRY = r"""@Article{pmid31025164,
    Title="{{I}nfluence of electrical stimulation therapy on permanent pacemaker function}",
    Journal="Wien. Klin. Wochenschr.",
    Year="2019",
-   Month="Apr",
+   Volume="131",
+   Number="13-14",
+   Pages="313--320",
+   Month="Jul",
    Note={[DOI:\href{https://dx.doi.org/10.1007/s00508-019-1494-5}{10.1007/s00508-019-1494-5}] [PubMed:\href{https://www.ncbi.nlm.nih.gov/pubmed/31025164}{31025164}] }
 }
 """
