@@ -2,7 +2,6 @@ import os
 
 import setuptools
 
-
 with open('README.rst', 'r') as readme:
     LONG_DESCRIPTION = readme.read()
 
@@ -18,7 +17,7 @@ setuptools.setup(
     author='Fabian Peter Hammerle',
     author_email='fabian@hammerle.me',
     url='https://github.com/fphammerle/pubmed-bibtex',
-    # TODO add license
+    license='GPLv3+',
     keywords=[
         'article',
         'bibtex',
@@ -36,6 +35,7 @@ setuptools.setup(
         'Development Status :: 4 - Beta',
         'Intended Audience :: Healthcare Industry',
         'Intended Audience :: Science/Research',
+        'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
