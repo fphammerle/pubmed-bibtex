@@ -1,0 +1,51 @@
+# sync with https://github.com/fphammerle/ical2vdir/blob/master/.github/workflows/python.yml
+
+# https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions
+
+# shown in badge
+# https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow#adding-a-workflow-status-badge-to-your-repository
+name: tests
+
+on:
+  push:
+  pull_request:
+  schedule:
+  - cron: '0 20 * * 5'
+
+jobs:
+  tests:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version:
+        - '3.5'
+        - '3.6'
+        - '3.7'
+      fail-fast: false
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: actions/setup-python@v2.3.1
+      with:
+        python-version: ${{ matrix.python-version }}
+    - run: pip install --upgrade pipenv==2020.8.13
+    # by default pipenv picks the latest version in PATH
+    - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
+      env:
+        PYTHON_VERSION: ${{ matrix.python-version }}
+    - run: pipenv graph
+    - run: pipenv run pytest --cov="$(cat *.egg-info/top_level.txt)" --cov-report=term-missing --cov-fail-under=100
+    - run: pipenv run pylint "$(cat *.egg-info/top_level.txt)"
+    # https://github.com/PyCQA/pylint/issues/352
+    # disable parse-error due to:
+    # > tests/resources/__init__.py:1:0: F0010: error while code parsing: Unable to load file tests/resources/__init__.py:
+    # > [Errno 2] No such file or directory: 'tests/resources/__init__.py' (parse-error)
+    - run: pipenv run pylint --disable=parse-error tests/*
+    # >=2.1.0 to support GITHUB_TOKEN
+    # COVERALLS_REPO_TOKEN required manual configuration of secret
+    # https://github.com/TheKevJames/coveralls-python/commit/f597109b62fadaf900af79d4f08a7debee5229e2
+    - run: pip install 'coveralls>=2.1.0,<4'
+    - run: coveralls
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # https://github.com/TheKevJames/coveralls-python/issues/240#issuecomment-758336355
+        COVERALLS_SERVICE_NAME: github
