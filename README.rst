@@ -1,6 +1,8 @@
 pubmed-bibtex
 =============
 
+.. image:: https://img.shields.io/badge/code%20style-black-000000.svg
+    :target: https://github.com/psf/black
 .. image:: https://github.com/fphammerle/pubmed-bibtex/workflows/tests/badge.svg
     :target: https://github.com/fphammerle/pubmed-bibtex/actions
 .. image:: https://coveralls.io/repos/github/fphammerle/pubmed-bibtex/badge.svg?branch=master

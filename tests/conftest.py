@@ -1,4 +1,4 @@
-TEST_PMID = '31025164'
+TEST_PMID = "31025164"
 
 # PMID invalid (expecting 31025164)
 TEST_BIBTEX_ENTRY = r"""@Article{pmid31025164,

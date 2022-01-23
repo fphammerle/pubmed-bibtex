@@ -13,6 +13,24 @@ on:
   - cron: '0 20 * * 5'
 
 jobs:
+  code-format:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-verison: ['3.9']
+    steps:
+    - uses: actions/checkout@v2.4.0
+    - uses: actions/setup-python@v2.3.1
+      with:
+        python-version: ${{ matrix.python-version }}
+        # did not reduce runtime of `pipenv install` (still approx. 1 min)
+        #cache: pipenv
+    - run: pip install --upgrade pipenv==2020.8.13
+    - run: pipenv install --python "$PYTHON_VERSION" --deploy --dev
+      env:
+        PYTHON_VERSION: ${{ matrix.python-version }}
+    - run: pipenv graph
+    - run: pipenv run black --check .
   tests:
     runs-on: ubuntu-20.04
     strategy:

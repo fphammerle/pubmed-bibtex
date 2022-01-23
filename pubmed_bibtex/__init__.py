@@ -44,22 +44,22 @@ import requests
 
 from pubmed_bibtex.version import __version__
 
-_TEXMED_URL_PATTERN = 'https://www.bioinformatics.org/texmed/cgi-bin' \
-                      '/list.cgi?PMID={pmid}&linkOut'
+_TEXMED_URL_PATTERN = (
+    "https://www.bioinformatics.org/texmed/cgi-bin/list.cgi?PMID={pmid}&linkOut"
+)
 
 
 class _TeXMedHtmlParser(html.parser.HTMLParser):
-
     def __init__(self):
         self.bibtex_entry: typing.Optional[str] = None
         super().__init__()
 
     @staticmethod
     def _strip_bibtex_entry(data: str) -> str:
-        return re.sub(r'\n\% \d+\s?\n', '', data).strip() + '\n'
+        return re.sub(r"\n\% \d+\s?\n", "", data).strip() + "\n"
 
     def handle_data(self, data: str) -> None:
-        if 'Author' in data:
+        if "Author" in data:
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
     def error(self, message) -> None:
