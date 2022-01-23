@@ -10,6 +10,7 @@ pubmed-bibtex = {editable = true, path = "."}
 black = "==21.12b0"
 mypy = "*"
 pylint = "*"
+pylint-import-requirements = "*"
 pytest = "*"
 pytest-cov = "*"
 types-requests = "*"
