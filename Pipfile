@@ -13,7 +13,6 @@ pylint = "*"
 pylint-import-requirements = "*"
 pytest = "*"
 pytest-cov = "*"
-types-requests = "*"
 
 # mypy on python<3.8
 typed-ast = {markers = "python_version < '3.8'"}

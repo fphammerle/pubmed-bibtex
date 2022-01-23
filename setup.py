@@ -52,9 +52,7 @@ setuptools.setup(
     },
     # >=3.6 for variable type hints
     python_requires=">=3.7",  # python<3.7 untested
-    install_requires=[
-        "requests>=2,<3",
-    ],
+    install_requires=[],
     setup_requires=["setuptools_scm"],
     tests_require=[
         "pylint>=2.3.0,<3",

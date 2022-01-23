@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - GPLv3+ license
 
+### Changed
+- `bibtex_entry_from_pmid` raises `urllib.error.HTTPError`
+  instead of `requests.exceptions.HTTPError`
+  (replaced [requests](https://pypi.org/project/requests/) with python's `urllib.request`)
+
 ### Removed
 - compatibility with `python3.5` & `python3.6`
 

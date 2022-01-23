@@ -39,8 +39,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 import html.parser
 import re
 import typing
-
-import requests
+import urllib.parse
+import urllib.request
 
 from pubmed_bibtex.version import __version__
 
@@ -70,8 +70,9 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
 
 def bibtex_entry_from_pmid(pmid: str) -> typing.Optional[str]:
     assert pmid.isdigit(), pmid
-    resp = requests.get(_TEXMED_URL_PATTERN.format(pmid=pmid))
-    resp.raise_for_status()  # raises requests.exceptions.HTTPError
     parser = _TeXMedHtmlParser()
-    parser.feed(resp.text)
+    with urllib.request.urlopen(  # raises urllib.error.HTTPError
+        _TEXMED_URL_PATTERN.format(pmid=urllib.parse.quote(pmid))
+    ) as resp:
+        parser.feed(resp.read().decode("utf-8"))
     return parser.bibtex_entry
