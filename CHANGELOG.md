@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - GPLv3+ license
 
+### Removed
+- compatibility with `python3.5`
+
 ## [0.1.0] - 2019-05-16
 
 [Unreleased]: https://github.com/fphammerle/pubmed-bibtex/compare/0.1.0...HEAD

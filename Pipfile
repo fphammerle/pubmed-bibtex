@@ -7,10 +7,17 @@ name = "pypi"
 pubmed-bibtex = {editable = true, path = "."}
 
 [dev-packages]
-pylint = ">=2.3.0,<3"
-pytest = "<5"
-pytest-cov = "<3,>=2"
-"autopep8" = "<2"
+pylint = "*"
+pytest = "*"
+pytest-cov = "*"
+
+# python3.6 compatibility
+importlib-metadata = "<4.9"
+platformdirs = "<2.4.1"
+tomli = "<2"
+zipp = "<3.7"
 
 [requires]
 python_version = "3"
+
+# Pipfile syntax: https://github.com/pypa/pipfile#pipfile

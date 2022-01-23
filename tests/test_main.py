@@ -4,6 +4,7 @@ import unittest.mock
 import pubmed_bibtex
 from pubmed_bibtex.__main__ import main
 
+# pylint: disable=wrong-import-order; false positive
 from conftest import TEST_PMID, TEST_BIBTEX_ENTRY
 
 
