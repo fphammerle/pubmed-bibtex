@@ -64,7 +64,8 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
         if "Author" in data:
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
-    def error(self, message: str) -> None:
+    @staticmethod
+    def error(message: str) -> None:
         raise Exception(message)  # pragma: no cover
 
 
