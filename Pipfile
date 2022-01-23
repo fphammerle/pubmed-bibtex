@@ -15,11 +15,6 @@ pytest = "*"
 pytest-cov = "*"
 types-requests = "*"
 
-# python3.6 compatibility
-importlib-metadata = "<4.9"
-platformdirs = "<2.4.1"
-tomli = "<2"
-zipp = "<3.7"
 # mypy on python<3.8
 typed-ast = {markers = "python_version < '3.8'"}
 

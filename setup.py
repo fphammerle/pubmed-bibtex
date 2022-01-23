@@ -1,19 +1,20 @@
-import os
+import pathlib
 
 import setuptools
-
-with open("README.rst", "r") as readme:
-    LONG_DESCRIPTION = readme.read()
 
 setuptools.setup(
     name="pubmed-bibtex",
     use_scm_version={
-        "write_to": os.path.join("pubmed_bibtex", "version.py"),
+        "write_to": pathlib.Path(__file__).parent.joinpath(
+            "pubmed_bibtex", "version.py"
+        ),
         # `version` triggers pylint C0103
         "write_to_template": "__version__ = '{version}'\n",
     },
     description="Generate BibTeX Entries for PubMed Publications",
-    long_description=LONG_DESCRIPTION,
+    long_description=pathlib.Path(__file__)
+    .parent.joinpath("README.rst")
+    .read_text(encoding="utf8"),
     author="Fabian Peter Hammerle",
     author_email="fabian@hammerle.me",
     url="https://github.com/fphammerle/pubmed-bibtex",
@@ -37,7 +38,6 @@ setuptools.setup(
         "Intended Audience :: Science/Research",
         "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
         # .github/workflows/python.yml
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
@@ -51,7 +51,7 @@ setuptools.setup(
         ],
     },
     # >=3.6 for variable type hints
-    python_requires=">=3.6",
+    python_requires=">=3.7",  # python<3.7 untested
     install_requires=[
         "requests>=2,<3",
     ],

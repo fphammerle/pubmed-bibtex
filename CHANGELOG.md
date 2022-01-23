@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - GPLv3+ license
 
 ### Removed
-- compatibility with `python3.5`
+- compatibility with `python3.5` & `python3.6`
 
 ### Fixed
 - return type hint of function `bibtex_entry_from_pmid`
