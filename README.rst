@@ -1,8 +1,8 @@
 pubmed-bibtex
 =============
 
-.. image:: https://travis-ci.org/fphammerle/pubmed-bibtex.svg?branch=master
-    :target: https://travis-ci.org/fphammerle/pubmed-bibtex
+.. image:: https://github.com/fphammerle/pubmed-bibtex/workflows/tests/badge.svg
+    :target: https://github.com/fphammerle/pubmed-bibtex/actions
 .. image:: https://coveralls.io/repos/github/fphammerle/pubmed-bibtex/badge.svg?branch=master
     :target: https://coveralls.io/github/fphammerle/pubmed-bibtex?branch=master
 .. image:: https://img.shields.io/pypi/v/pubmed-bibtex.svg
