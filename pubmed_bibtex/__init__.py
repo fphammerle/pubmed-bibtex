@@ -71,7 +71,7 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
 def bibtex_entry_from_pmid(pmid: str) -> typing.Optional[str]:
     assert pmid.isdigit(), pmid
     resp = requests.get(_TEXMED_URL_PATTERN.format(pmid=pmid))
-    resp.raise_for_status()
+    resp.raise_for_status()  # raises requests.exceptions.HTTPError
     parser = _TeXMedHtmlParser()
     parser.feed(resp.text)
     return parser.bibtex_entry
