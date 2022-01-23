@@ -44,13 +44,15 @@ import requests
 
 from pubmed_bibtex.version import __version__
 
+__all__ = ["__version__", "bibtex_entry_from_pmid"]
+
 _TEXMED_URL_PATTERN = (
     "https://www.bioinformatics.org/texmed/cgi-bin/list.cgi?PMID={pmid}&linkOut"
 )
 
 
 class _TeXMedHtmlParser(html.parser.HTMLParser):
-    def __init__(self):
+    def __init__(self) -> None:
         self.bibtex_entry: typing.Optional[str] = None
         super().__init__()
 
@@ -62,11 +64,11 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
         if "Author" in data:
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
-    def error(self, message) -> None:
+    def error(self, message: str) -> None:
         raise Exception(message)  # pragma: no cover
 
 
-def bibtex_entry_from_pmid(pmid: str) -> str:
+def bibtex_entry_from_pmid(pmid: str) -> typing.Optional[str]:
     assert pmid.isdigit(), pmid
     resp = requests.get(_TEXMED_URL_PATTERN.format(pmid=pmid))
     resp.raise_for_status()

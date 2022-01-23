@@ -58,6 +58,7 @@ jobs:
     # > tests/resources/__init__.py:1:0: F0010: error while code parsing: Unable to load file tests/resources/__init__.py:
     # > [Errno 2] No such file or directory: 'tests/resources/__init__.py' (parse-error)
     - run: pipenv run pylint --disable=parse-error tests/*
+    - run: pipenv run mypy "$(cat *.egg-info/top_level.txt)" tests
     # >=2.1.0 to support GITHUB_TOKEN
     # COVERALLS_REPO_TOKEN required manual configuration of secret
     # https://github.com/TheKevJames/coveralls-python/commit/f597109b62fadaf900af79d4f08a7debee5229e2

@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - compatibility with `python3.5`
 
+### Fixed
+- return type hint of function `bibtex_entry_from_pmid`
+
 ## [0.1.0] - 2019-05-16
 
 [Unreleased]: https://github.com/fphammerle/pubmed-bibtex/compare/0.1.0...HEAD

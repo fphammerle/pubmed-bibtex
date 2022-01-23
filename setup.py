@@ -46,7 +46,7 @@ setuptools.setup(
     packages=setuptools.find_packages(),
     entry_points={
         "console_scripts": [
-            "pubmed-bibtex = pubmed_bibtex.__main__:main",
+            "pubmed-bibtex = pubmed_bibtex.__main__:_main",
         ],
     },
     # >=3.6 for variable type hints

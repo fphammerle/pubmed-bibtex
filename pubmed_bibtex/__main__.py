@@ -23,7 +23,7 @@ import pubmed_bibtex
 __version__ = pubmed_bibtex.__version__
 
 
-def main():
+def _main() -> None:
     argparser = argparse.ArgumentParser(
         description=pubmed_bibtex.__doc__.strip(),
         formatter_class=argparse.RawDescriptionHelpFormatter,
@@ -37,4 +37,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    _main()

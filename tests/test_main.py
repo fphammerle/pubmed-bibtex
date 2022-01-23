@@ -1,22 +1,24 @@
 import subprocess
 import unittest.mock
 
+import _pytest.capture
+
 import pubmed_bibtex
-from pubmed_bibtex.__main__ import main
+from pubmed_bibtex.__main__ import _main
 
 # pylint: disable=wrong-import-order; false positive
-from conftest import TEST_PMID, TEST_BIBTEX_ENTRY
+from conftest import TEST_BIBTEX_ENTRY, TEST_PMID
 
 
-def test_main(capsys):
+def test__main(capsys: _pytest.capture.CaptureFixture) -> None:
     with unittest.mock.patch("sys.argv", ["", TEST_PMID]):
-        main()
+        _main()
     out, err = capsys.readouterr()
     assert not err
     assert out == TEST_BIBTEX_ENTRY
 
 
-def test_script_module():
+def test_script_module() -> None:
     proc_info = subprocess.run(
         ["python", "-m", "pubmed_bibtex", TEST_PMID],
         check=True,
@@ -27,7 +29,7 @@ def test_script_module():
     assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
 
 
-def test_script():
+def test_script() -> None:
     proc_info = subprocess.run(
         ["pubmed-bibtex", TEST_PMID],
         check=True,
@@ -38,7 +40,7 @@ def test_script():
     assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
 
 
-def test_version():
+def test_version() -> None:
     proc_info = subprocess.run(
         ["pubmed-bibtex", "--version"],
         check=True,
