@@ -37,6 +37,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
 """
 
 import html.parser
+import logging
 import re
 import typing
 import urllib.parse
@@ -49,6 +50,8 @@ __all__ = ["__version__", "bibtex_entry_from_pmid"]
 _TEXMED_URL_PATTERN = (
     "https://www.bioinformatics.org/texmed/cgi-bin/list.cgi?PMID={pmid}&linkOut"
 )
+
+_LOGGER = logging.getLogger(__name__)
 
 
 class _TeXMedHtmlParser(html.parser.HTMLParser):
@@ -69,11 +72,21 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
         raise Exception(message)  # pragma: no cover
 
 
-def bibtex_entry_from_pmid(pmid: str) -> typing.Optional[str]:
+def bibtex_entry_from_pmid(pmid: str, retries: int = 2) -> typing.Optional[str]:
     assert pmid.isdigit(), pmid
     parser = _TeXMedHtmlParser()
-    with urllib.request.urlopen(  # raises urllib.error.HTTPError
-        _TEXMED_URL_PATTERN.format(pmid=urllib.parse.quote(pmid))
-    ) as resp:
-        parser.feed(resp.read().decode("utf-8"))
+    for attempt_index in range(1, retries + 2):
+        with urllib.request.urlopen(  # raises urllib.error.HTTPError
+            _TEXMED_URL_PATTERN.format(pmid=urllib.parse.quote(pmid))
+        ) as resp:
+            parser.feed(resp.read().decode("utf-8"))
+        if parser.bibtex_entry is None:
+            _LOGGER.log(
+                logging.WARNING if attempt_index <= retries else logging.ERROR,
+                "attempt #%d/%d to fetch bibtex entry failed",
+                attempt_index,
+                retries + 1,
+            )
+        else:
+            break
     return parser.bibtex_entry

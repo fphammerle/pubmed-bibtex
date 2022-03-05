@@ -25,7 +25,7 @@ def test_script_module() -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    assert not proc_info.stderr
+    assert all(l.startswith(b"attempt #") for l in proc_info.stderr.splitlines())
     assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
 
 
@@ -36,7 +36,7 @@ def test_script() -> None:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE,
     )
-    assert not proc_info.stderr
+    assert all(l.startswith(b"attempt #") for l in proc_info.stderr.splitlines())
     assert proc_info.stdout == TEST_BIBTEX_ENTRY.encode()
 
 
