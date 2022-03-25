@@ -67,9 +67,12 @@ class _TeXMedHtmlParser(html.parser.HTMLParser):
         if "Author" in data:
             self.bibtex_entry = self._strip_bibtex_entry(data)
 
-    @staticmethod
-    def error(message: str) -> None:
-        raise Exception(message)  # pragma: no cover
+    def error(self, message: str) -> None:  # pragma: no cover
+        # removed in python3.10:
+        # https://github.com/python/cpython/commit/e34bbfd61f405eef89e8aa50672b0b25022de320
+        # https://web.archive.org/web/20220326053316/https://bugs.python.org/issue31844
+        # pylint: disable=no-self-use; python>=3.10
+        raise Exception(message)
 
 
 def bibtex_entry_from_pmid(pmid: str, retries: int = 2) -> typing.Optional[str]:
