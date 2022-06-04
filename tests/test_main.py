@@ -1,6 +1,7 @@
 import subprocess
 import unittest.mock
 
+# pylint: disable=import-private-name; tests
 import _pytest.capture
 
 import pubmed_bibtex
