@@ -5,8 +5,8 @@ pubmed-bibtex
     :target: https://github.com/psf/black
 .. image:: https://github.com/fphammerle/pubmed-bibtex/workflows/tests/badge.svg
     :target: https://github.com/fphammerle/pubmed-bibtex/actions
-.. image:: https://coveralls.io/repos/github/fphammerle/pubmed-bibtex/badge.svg?branch=master
-    :target: https://coveralls.io/github/fphammerle/pubmed-bibtex?branch=master
+.. image:: https://ipfs.io/ipfs/QmP8k5H4MkfspFxQxdL2kEZ4QQWQjF8xwPYD35KvNH4CA6/20230429T090002+0200/s3.amazonaws.com/assets.coveralls.io/badges/coveralls_100.svg
+    :target: https://github.com/fphammerle/pubmed-bibtex/actions
 .. image:: https://img.shields.io/pypi/v/pubmed-bibtex.svg
     :target: https://pypi.org/project/pubmed-bibtex/#history
 .. image:: https://img.shields.io/pypi/pyversions/pubmed-bibtex.svg
