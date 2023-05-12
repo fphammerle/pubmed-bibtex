@@ -19,6 +19,10 @@ Utilizes the API of TeXMed, a BibTeX interface for PubMed.
 
 TeXMed was written by Arne Muller https://www.bioinformatics.org/texmed/
 
+pubmed-bibtex is currently unmaintained & archived cause TeXMed's exporter
+skips german umlaute & possibly other non-ascii characters
+(see `example <https://web.archive.org/web/20230512115423/https://www.bioinformatics.org/texmed/cgi-bin/list.cgi?PMID=31025164>`_)
+
 Install
 -------
 
